@@ -1,0 +1,36 @@
+body {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+}
+
+.board-container td {
+  width: 1px;
+  height: 1px;
+  text-align: center;
+  transition: 0.5s;
+}
+
+.board-container td:hover {
+  background-color: lightsalmon;
+}
+
+.checked {
+  background-color: rgb(253, 255, 122);
+}
+
+.timer {
+  /* text-align: center; */
+  margin: 100px auto 0 auto;
+  height: 100px;
+  font-size: 50px;
+  /* visibility: hidden; */
+}
+
+.unchecked {
+  background-color: gray;
+}
