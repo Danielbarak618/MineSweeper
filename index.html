@@ -8,19 +8,28 @@
 </head>
 
 <body onload="init()">
-
-
     <div class="top-container">
         <h1 class="heading">MineSweeper</h1>
-    </div>
-    <div class="board-container">
-        <!-- <table border="1" cellpadding="10">
+        <h3>Timer : </h3>
+        <h3 id="timer">00:00</h3>
+        <h4>Lifes Left : </h4>
+        <button class='smiley' onclick="restart()">😜</button>
+        <button onclick="difficulty(this)">Easy</button>
+        <button onclick="difficulty(this)">Medium</button>
+        <button onclick="difficulty(this)">Hard</button>
+        <div class='modal-heading'>
+        </div>
+        <div class="board-container">
+            <!-- <table border="1" cellpadding="10">
             <tbody class="board">
                 
             </tbody>
         </table> -->
-    </div>
+        </div>
 
+    </div>
+    <footer class='footer'>daniel barak ©
+    </footer>
     <script src="js/util.js"></script>
     <script src="js/main.js"></script>
 </body>

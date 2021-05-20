@@ -15,52 +15,58 @@ function getClassName(location) {
   return cellClass;
 }
 
-function getNearCellsLocation(board, cellI, cellJ) {
-  var coords = [];
-
-  for (let i = cellI - 1; i <= cellI + 1; i++) {
-    if (i < 0 || i >= board.length) continue;
-
-    for (let j = cellJ - 1; j <= cellJ + 1; j++) {
-      if (j < 0 || j >= board[i].length) continue;
-      if (i === cellI && j === cellJ) continue;
-
-      coords.push({ i, j });
-    }
-  }
-
-  return coords;
-}
-
-function getClassLocation(cellClass) {
-  var splitting = cellClass.split('-');
-  var location = {
-    i: splitting[1],
-    j: splitting[2],
-  };
-
-  return location;
-}
-
-function renderCell(location, value) {
+function renderCell(i, j, value) {
   // Select the elCell and set the value
   var elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
   elCell.innerHTML = value;
-}
-
-function shuffle(array) {
-  var j, x, i;
-  for (i = array.length - 1; i > 0; i--) {
-    j = Math.floor(Math.random() * (i + 1));
-    x = array[i];
-    array[i] = array[j];
-    array[j] = x;
-  }
-  return array;
 }
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function initTimer() {
+  var elTimer = document.getElementById('timer');
+  elTimer.innerText = '00 : 00';
+}
+
+function startTimer() {
+  if (!gTimerIntervalId) {
+    gStartTimer = getTime();
+    gTimerIntervalId = setInterval(renderTimer, 10);
+  }
+}
+
+function getTime() {
+  return Date.now();
+}
+
+function renderTimer() {
+  var delta = getTime() - gStartTimer;
+  var time = timeFormatter(delta);
+  var elTimer = document.getElementById('timer');
+  elTimer.innerText = time;
+}
+
+function timeFormatter(timeInMilliseconds) {
+  var time = new Date(timeInMilliseconds);
+  var minutes = time.getMinutes().toString();
+  var seconds = time.getSeconds().toString();
+  var milliseconds = time.getMilliseconds().toString();
+
+  if (minutes.length < 2) {
+    minutes = '0' + minutes;
+  }
+
+  if (seconds.length < 2) {
+    seconds = '0' + seconds;
+  }
+
+  while (milliseconds.length < 3) {
+    milliseconds = '0' + milliseconds;
+  }
+
+  return minutes + ' : ' + seconds;
 }

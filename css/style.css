@@ -1,36 +1,63 @@
 body {
   text-align: center;
+  background-color: lightblue;
 }
 
 table {
   margin: auto;
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
+}
+button {
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
+button:hover {
+  background-color: rgb(60, 121, 212);
+}
 .board-container td {
-  width: 1px;
-  height: 1px;
+  width: 30px;
+  height: 30px;
   text-align: center;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .board-container td:hover {
-  background-color: greenyellow;
+  background-color: rgb(46, 164, 219);
 }
 
 .checked {
-  background-color: crimson;
-}
-
-.timer {
-  /* text-align: center; */
-  margin: 100px auto 0 auto;
-  height: 100px;
-  font-size: 50px;
-  /* visibility: hidden; */
+  background-color: rgb(183, 171, 197);
 }
 
 .unchecked {
   background-color: white;
+}
+
+.modal-heading {
+  width: 200px;
+
+  height: 100px;
+  background-color: rgb(61, 112, 32);
+  margin: auto;
+  margin-bottom: 25px;
+  display: none;
+}
+
+.smiley {
+  width: 40px;
+  height: 40px;
+}
+
+h3 {
+  font-family: 'Lexend Deca', sans-serif;
+}
+
+.footer {
+  margin-top: 400px;
+  border: solid black;
+  padding: 10px;
+  background-color: burlywood;
 }
