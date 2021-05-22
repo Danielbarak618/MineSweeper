@@ -25,12 +25,12 @@ var gLevel = {
   MINES: 2,
 };
 
-var epmtyCells;
 var gBoard;
 
 function init() {
   gBoard = buildBoard();
   gLives = 3;
+  gFirstCellClicked = true;
   randomNumbers(gBoard, gLevel.SIZE);
   setMinesCountPrimary(gBoard);
   renderBoard(gBoard);
@@ -94,8 +94,12 @@ function cellClicked(elCell, i, j, e) {
   var elLives = document.querySelector('h4');
   elLives.innerText = `Life left : ${gLives}`;
   startTimer();
+  if (cell.isMine && gFirstCellClicked) {
+    alert('mine');
+    return;
+  }
+  gFirstCellClicked = false;
   if (cell.isMarked || !gGame.isOn) return;
-
   var elContainer = document.querySelector('.board-container');
 
   if (cell.isMine && !gLives) {
@@ -117,7 +121,7 @@ function cellClicked(elCell, i, j, e) {
     gGame.shownCount++;
   }
 
-  if (gBoard[i][j].minesAroundCount === 0) {
+  if (gBoard[i][j].minesAroundCount === 0 && !gBoard[i][j].isMine) {
     blowUpNegs(i, j, gBoard);
   }
 
@@ -180,6 +184,8 @@ function blowUpNegs(cellI, cellJ, board) {
       if (j < 0 || j >= board[i].length) continue;
       var currNeighbour = board[i][j];
       if (currNeighbour.symbol === MINE || currNeighbour.isMarked) continue;
+      // if (currNeighbour.isMarked) continue;
+
       if (!currNeighbour.isShown && !currNeighbour.isMine) {
         currNeighbour.isShown = true;
       }
